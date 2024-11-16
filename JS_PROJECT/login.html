@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<style>
+    body {
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        color: #333;
+    }
+
+    .container {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        padding: 30px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .form-switch {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .btn-switch {
+        background: #007bff;
+        color: #fff;
+        border: none;
+        padding: 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 48%;
+        text-align: center;
+    }
+
+    .btn-switch.active {
+        background: #0056b3;
+        transform: scale(1.05);
+    }
+
+    .btn-switch:hover {
+        background: #0056b3;
+    }
+
+    .form-content {
+        display: none;
+        animation: fadeIn 0.3s ease-in;
+    }
+
+    .form-content.active {
+        display: block;
+    }
+
+    .form h2 {
+        margin-bottom: 20px;
+        font-size: 26px;
+        color: #333;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+    }
+
+    .form-group input:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+        outline: none;
+    }
+
+    .error-message {
+        color: #dc3545;
+        font-size: 13px;
+        margin-top: 5px;
+    }
+
+    .success-message {
+        color: red;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<body>
+    <div class="container">
+
+        <div class="form-switch">
+            <button class="btn-switch active" id="show-signup">Sign Up</button>
+            <button class="btn-switch" id="show-login">Login</button>
+        </div>
+
+        <!-- sign up -->
+
+        <div id="signup-form" class="form-content active">
+            <form id="signUpForm" class="form">
+                <h2>Sign Up</h2>
+                <div class="form-group">
+                    <label for="signup-name">Name</label>
+                    <input type="text" id="signup-name" placeholder="Enter your name">
+                    <span id="signup-nameError" class="error-message"></span>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" placeholder="Enter your email">
+                    <span id="signup-emailError" class="error-message"></span>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" placeholder="Enter your password">
+                    <span id="signup-passwordError" class="error-message"></span>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirmPassword">Confirm Password</label>
+                    <input type="password" id="signup-confirmPassword" placeholder="Confirm your password">
+                    <span id="signup-confirmPasswordError" class="error-message"></span>
+                </div>
+                <button type="submit" class="btn">Sign Up</button>
+                <p id="signup-success" class="success-message"></p>
+            </form>
+        </div>
+
+        <!-- login -->
+
+        <div id="login-form" class="form-content">
+            <form id="loginForm" class="form">
+                <h2>Login</h2>
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" placeholder="Enter your email">
+                    <span id="login-emailError" class="error-message"></span>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password">
+                    <span id="login-passwordError" class="error-message"></span>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <p id="login-success" class="success-message"></p>
+            </form>
+        </div>
+    </div>
+    <script>
+
+        // switching
+
+        document.getElementById("show-signup").addEventListener("click", () => {
+            document.getElementById("signup-form").classList.add("active");
+            document.getElementById("login-form").classList.remove("active");
+            document.getElementById("show-signup").classList.add("active");
+            document.getElementById("show-login").classList.remove("active");
+        });
+
+        document.getElementById("show-login").addEventListener("click", () => {
+            document.getElementById("signup-form").classList.remove("active");
+            document.getElementById("login-form").classList.add("active");
+            document.getElementById("show-login").classList.add("active");
+            document.getElementById("show-signup").classList.remove("active");
+        });
+
+        //    signup
+
+        document.getElementById("signUpForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+
+            const name = document.getElementById("signup-name").value.trim();
+            const email = document.getElementById("signup-email").value.trim();
+            const password = document.getElementById("signup-password").value;
+            const confirmPassword = document.getElementById("signup-confirmPassword").value;
+
+
+            clearErrors("signup");
+
+            let isValid = true;
+
+
+            if (name.length < 6) {
+                showError("signup-nameError", "Name must be at least 5 characters.");
+                isValid = false;
+            }
+
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                showError("signup-emailError", "Invalid email.");
+                isValid = false;
+            }
+
+
+            if (password.length < 8) {
+                showError("signup-passwordError", "Password must be at least 5 characters.");
+                isValid = false;
+            }
+
+
+            if (password !== confirmPassword) {
+                showError("signup-confirmPasswordError", "Passwords do not match.");
+                isValid = false;
+            }
+
+
+            if (isValid) {
+                document.getElementById("signup-success").textContent = "Sign Up successful!";
+                document.getElementById("signUpForm").reset();
+            }
+        });
+
+        // login
+
+        document.getElementById("loginForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+
+            const email = document.getElementById("login-email").value.trim();
+            const password = document.getElementById("login-password").value;
+
+
+            clearErrors("login");
+
+            let isValid = true;
+
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                showError("login-emailError", "Invalid email.");
+                isValid = false;
+            }
+
+
+            if (password.length < 8) {
+                showError("login-passwordError", "Password must be at least 5 characters.");
+                isValid = false;
+            }
+
+
+            if (isValid) {
+                document.getElementById("login-success").textContent = "Login successful!";
+                document.getElementById("loginForm").reset();
+            }
+        });
+
+
+        function showError(id, message) {
+            document.getElementById(id).textContent = message;
+        }
+
+        function clearErrors(formPrefix) {
+            document.querySelectorAll(`#${formPrefix}-form .error-message`).forEach(el => el.textContent = '');
+            document.querySelectorAll(`#${formPrefix}-form .success-message`).forEach(el => el.textContent = '');
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,184 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* Navbar */
+
+.navbar {
+    box-shadow: 0 4px/ 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    align-items: center;
+}
+
+.nav-link {
+    font-size: 17px;
+    color: #333;
+    display: block;
+}
+
+.nav-btns {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-btns .btn {
+    font-size: 20px;
+    color: #333;
+}
+
+.nav-btns .countItem {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 2px 6px;
+    background-color: black;
+    color: white;
+    font-size: 12px;
+    border-radius: 50%;
+}
+
+.navbar-toggler {
+    outline: none;
+}
+
+
+/* slider*/
+
+.slider {
+    position: relative;
+    width: 100%;
+    height: 550px;
+    overflow: hidden;
+}
+
+.slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.slide.active {
+    display: block;
+}
+
+.prev,
+.next {
+    position: absolute;
+    top: 60%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+#slider1 {
+    background-image: url(https://www.housedigest.com/img/gallery/tiktoks-wax-paper-hack-to-make-your-clothes-hangers-slide-with-ease/l-intro-1701979197.jpg);
+}
+
+#slider2 {
+    background-image: url(https://img.freepik.com/premium-photo/fashionable-clothes-hangers-wardrobe-rack-colored-background_441923-7438.jpg);
+}
+
+#slider3 {
+    background-image: url(https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img/https://www.customyourbrand.com/wp-content/uploads/2021/06/slider-2.jpg);
+}
+
+
+/* product */
+
+.shop {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 22px;
+    background: transparent;
+    border: none;
+    /* font-weight: 900; */
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+#shop {
+    margin-top: 40px;
+}
+
+#productList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0 auto;
+    margin-top: 40px;
+    max-width: 1200px;
+}
+
+#productList li {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+    border-radius: 7px;
+}
+
+#productList li img {
+    max-width: 80%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+#productList li h3 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+#productList li p {
+    font-size: 0.9rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#productList li .btn {
+    background-color: black;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 7px;
+    transition: background 0.3s ease-in-out;
+}
+
+#productList li .btn:hover {
+    background: linear-gradient(135deg, #292106, #975748);
+}
+
+
